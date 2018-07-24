@@ -4,7 +4,9 @@ using namespace std;
 class oneTimePad{
         public:
         string encryption(sting s){
+                  for(int i=0;i<s.length();i++){
                   
+                  }
         
         
         }

@@ -7,64 +7,44 @@ using namespace std;
 class TranspositionEncryption {
         //code for encrypting the string
         public: 
-        string encrypt(string s){
-                string ency=s;
-                int mid=s.length()/2;
-                if(mid%2==0)
-                for(int i=0,j=0;i<s.length();i++){
-                        if(i%2==0)
-                            ency[j++]=s[i];
-                        if(i%2==1)
-                            ency[mid++]=s[i];
-                }
-                      
-/*                else if(mid%2==1){
-                mid++;
-                for(int i=0,j=0;i<s.length();i++){
-                        if(i%2==0)
-                            ency[j++]=s[i];
-                        if(i%2==1)
-                            ency[mid++]=s[i];
-                } 
-                }
-*/                return ency;
-        }
         
-        //code for decrypting the cipher
-        string decryption(string s){
-                string decrypt=s;
-                int mid=s.length()/2;
-                if(mid%2==0)
-                        for(int i=0,j=0;i<s.length();i++){
-                                if(i%2==0)
-                                    decrypt[i]=s[j++];
-                                if(i%2==1)
-                                    decrypt[i]=s[mid++];
-                        }               
-                else if(mid%2==1){
-                        mid++;
-                        for(int i=0,j=0;i<s.length();i++){
-                                if(i%2==0)
-                                    decrypt[i]=s[j++];
-                                if(i%2==1)
-                                    decrypt[i]=s[mid++];
-                        }       
+        string encrypt(string s,char a[][10],int rail){
+                int len=0;
+                for(int i=0;len<s.length();i++)
+                        for(int j=0;j<rail;j++)
+                                if(len<s.length())
+                                        a[j][i]=s[len++];
+
+                cout<<"encrypted string -->  ";
+                for(int i=0;i<10;i++)
+                        for(int j=0;j<10;j++)
+                                if(a[i][j]!='0')
+                                        cout<<a[i][j];
+                cout<<endl;                        
+
+                cout<<"decrypted string -->  ";
+                for(int i=0;i<10;i++)
+                        for(int j=0;j<10;j++)
+                                if(a[i][j]!='0')
+                                        cout<<a[j][i];
+                cout<<endl;                        
+                
                 }
-                return decrypt;
-        }
-};
+        };
+        
 
 //main function
 
 int main (){
-        string s,ency,decy;
+        int rail;
+        string s;
+        char a[10][10]={0};
         cout<<"Enter the string -->  ";
-        cin>>s;      	                                 //scanning the string  
+        cin>>s;   
+        cout<<"Enter no of rail -->  ";
+        cin>>rail;                               //scanning the string  
         TranspositionEncryption e;
-        ency=e.encrypt(s);
-        decy=e.decryption(ency);
-        cout<<"String is --> "<<ency<<endl;
-        cout<<"String is --> "<<decy<<endl;
+        e.encrypt(s,a,rail);
         return 0;
 }
 
